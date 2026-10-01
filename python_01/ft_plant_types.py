@@ -1,7 +1,7 @@
 class Plant:
 	@staticmethod
-	def is_a_year_old(self):
-		return (self.__age > 365)
+	def is_a_year_old(age):
+		return (age > 365)
 	@classmethod
 	def anonymous(cls):
 		return cls("Anonimo", 0, 0)
@@ -10,6 +10,7 @@ class Plant:
 		self.__height = round(height, 1)
 		self.__age = age
 		self.life_time = 0
+		
 	def show(self):
 		print(f"{self.name}: {self.__height:.1f}cm, {self.__age} days old")
 	def grow(self):
@@ -23,8 +24,8 @@ class Plant:
 		self.life_time += 1
 		print(f"=== Day: {self.life_time} ===")
 	def growth_day(self, days: int):
-		growth = round(days * 0.8, 1)
-		print(f"Growth this week: {growth}cm")
+		self.growth = round(days * 0.8, 1)
+		print(f"Growth this week: {self.growth}cm")
 	def set_height(self, new_height: int):
 		if (new_height > 0):
 			self.__height = new_height
@@ -46,12 +47,14 @@ class Flower(Plant):
 	def __init__(self, color, age, height, name):
 		super().__init__(age=age, height=height, name=name)
 		self.color = color
+		self.count_bloom = 0
 	def bloom(self):
+		self.count_bloom += 1
 		print(f"{self.name} is blooming beautifully!")
 	def show(self):
 		super().show()
 		print(f"Color: {self.color}")
-		print("Rose has not bloomet yet")
+		print(f"{self.name} has not bloomet yet")
 
 class Tree(Plant):
 	def __init__(self, trunk_diameter, age, height, name):
@@ -59,8 +62,6 @@ class Tree(Plant):
 		self.trunk_diameter = trunk_diameter
 	def produce_shade(self):
 		print(f"Tree {self.name} now produces a shade of {self.get_height()}cm long and {self.trunk_diameter}cm wide")
-	
-	
 
 class Vegetable(Plant):
 	def __init__(self, harvest_season, age, height, name, nutritional_value):
@@ -75,6 +76,10 @@ class Vegetable(Plant):
 		print(f"Harvest season: {self.harvest_season}")
 		print(f"Nutrition value: {self.nutritional_value}")
 
+class Seed(Flower):
+	def __init__(self, color, age, height, name):
+		self.count_bloom = 0
+
 if __name__ == "__main__":
 	print("=== Garden Plan Types ===")
 	print("=== Flower")
@@ -82,6 +87,7 @@ if __name__ == "__main__":
 	rose.show()
 	print("[asking the rose to bloom]")
 	rose.show()
+	print(rose.__height)
 	rose.bloom()
 	rose.show()
 	print("\n\n")
