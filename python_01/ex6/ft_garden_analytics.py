@@ -7,30 +7,36 @@ class Plant:
     def anonymous(cls):
         return cls("Anonimo", 0, 0)
 
+    class Statistics:
+        GROW_COUNT = 0
+        SHOW_COUNT = 0
+        AGE_COUNT = 0
+
+        @classmethod
+        def show(cls, plant):
+            print(f"[statics for {plant.name}]")
+            msg1 = f"Stats: {cls.GROW_COUNT} grow, "
+            msg2 = f"{cls.AGE_COUNT} age, "
+            msg3 = f"{cls.SHOW_COUNT} show"
+            print(msg1 + msg2 + msg3)
+
     def __init__(self, name, height, age):
         self.name = name
-        self.__height = round(height, 1)
-        self.__age = age
-        self.show_c = 0
-        self.grow_c = 0
-        self.age_c = 0
+        self._height = round(height, 1)
+        self._age = age
         self.life_time = 0
 
-    def statics(s):
-        print(f"[statics for {s.name}]")
-        print(f"Stats: {s.grow_c} grow, {s.life_time} age, {s.show_c} show")
-
     def show(self):
-        print(f"{self.name}: {self.__height:.1f}cm, {self.__age} days old")
-        self.show_c += 1
+        print(f"{self.name}: {self._height:.1f}cm, {self._age} days old")
+        self.Statistics.SHOW_COUNT += 1
 
     def grow(self):
-        self.__height += 0.8
-        self.__height = round(self.__height, 1)
-        self.grow_c += 1
+        self._height += 0.8
+        self._height = round(self._height, 1)
+        self.Statistics.GROW_COUNT += 1
 
     def age_increment(self):
-        self.__age += 1
+        self._age += 1
 
     def pass_day(self):
         self.grow()
@@ -44,24 +50,24 @@ class Plant:
 
     def set_height(self, new_height: int):
         if (new_height > 0):
-            self.__height = new_height
+            self._height = new_height
             print(f"Height updated: {new_height}")
             return
         print("Error, height can't be negative\nHeight update rejected")
 
     def set_age(self, new_age: int):
         if (new_age > 0):
-            self.__age = new_age
+            self._age = new_age
             print(f"Age updated: {new_age}")
             return
         print("Error, age can't be negative\nAge update rejected")
 
     def get_height(self):
-        return self.__height
+        return self._height
 
     def get_age(self):
-        self.age_c += 1
-        return self.__age
+        self.Statistics.AGE_COUNT += 1
+        return self._age
 
 
 class Flower(Plant):
@@ -89,12 +95,18 @@ class Tree(Plant):
 
     def produce_shade(s):
         s.shades_count += 1
-        print(f'''Tree {s.name} now produces a shade of {s.get_height()}
-        cm long and {s.t_diam}cm wide''')
+        h = s.get_height()
+        d = s.t_diam
+        n = s.name
+        msg = f"Tree {n} now produces a shade of {h}cm long and {d}cm wide"
+        print(msg)
 
-    def statics(self):
-        super().statics()
-        print(f"{self.shades_count} shade")
+    class Statistic(Plant.Statistics):
+        SHADE_COUNT = 0
+
+        def show(cls, self):
+            super().show(self)
+            print(f"{cls.SHADE_COUNT} shade")
 
 
 class Vegetable(Plant):
@@ -128,7 +140,7 @@ class Seed(Flower):
 
 
 def print_statics(plant: Plant):
-    plant.statics()
+    plant.Statistics.show(plant)
 
 
 if __name__ == "__main__":
@@ -139,7 +151,7 @@ if __name__ == "__main__":
     print("=== Flower")
     rose = Flower(name="Rose", age=34, height=30, color="yellow")
     rose.show()
-    rose.statics()
+    rose.Statistics.show(rose)
     print("[asking the rose to bloom]")
     rose.bloom()
     rose.show()
@@ -147,10 +159,10 @@ if __name__ == "__main__":
     print("=== Tree")
     tree = Tree(name="Dak", age=33, height=3424, t_diameter=3, )
     tree.show()
-    tree.statics()
+    tree.Statistics.show(tree)
     print("[asking the oak to produce shade]")
     tree.produce_shade()
-    tree.statics()
+    tree.Statistics.show(tree)
     print("\n\n")
     print("=== Seed")
     seed = Seed(name="Sunflower", age=45, height=80, color="yellow")
@@ -159,8 +171,8 @@ if __name__ == "__main__":
     seed.grow()
     seed.get_age()
     seed.bloom()
-    seed.statics()
+    seed.Statistics.show(seed)
     print("\n\n=== Anonymous")
     anonymous = Plant.anonymous()
     anonymous.show()
-    anonymous.statics()
+    anonymous.Statistics.show(anonymous)

@@ -9,19 +9,19 @@ class Plant:
 
     def __init__(self, name, height, age):
         self.name = name
-        self.__height = round(height, 1)
-        self.__age = age
+        self._height = round(height, 1)
+        self._age = age
         self.life_time = 0
 
     def show(self):
-        print(f"{self.name}: {self.__height:.1f}cm, {self.__age} days old")
+        print(f"{self.name}: {self._height:.1f}cm, {self._age} days old")
 
     def grow(self):
-        self.__height += 0.8
-        self.__height = round(self.__height, 1)
+        self._height += 0.8
+        self._height = round(self._height, 1)
 
     def age_increment(self):
-        self.__age += 1
+        self._age += 1
 
     def pass_day(self):
         self.grow()
@@ -35,23 +35,23 @@ class Plant:
 
     def set_height(self, new_height: int):
         if (new_height > 0):
-            self.__height = new_height
+            self._height = new_height
             print(f"Height updated: {new_height}")
             return
         print("Error, height can't be negative\nHeight update rejected")
 
     def set_age(self, new_age: int):
         if (new_age > 0):
-            self.__age = new_age
+            self._age = new_age
             print(f"Age updated: {new_age}")
             return
         print("Error, age can't be negative\nAge update rejected")
 
     def get_height(self):
-        return self.__height
+        return self._height
 
     def get_age(self):
-        return self.__age
+        return self._age
 
 
 class Flower(Plant):
