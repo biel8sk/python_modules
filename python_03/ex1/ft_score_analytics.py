@@ -5,9 +5,9 @@ def extract_scores(args):
     numbers: list[int] = []
     for arg in args:
         try:
-           numbers.append(int(arg))
-        except Exception as e:
-           print(f"Invalid parameter: {arg}")
+            numbers.append(int(arg))
+        except Exception:
+            print(f"Invalid parameter: {arg}")
     return numbers
 
 
@@ -15,11 +15,13 @@ def main():
     args = sys.argv
     print("=== Player Score Analytics ===")
     if (len(args) < 2):
-        print("No scores provided. Usage: python3 ft_score_analytics.py <score1> <score2> ...\n")
+        print("No scores provided. Usage: python3 ft_score_analytics.py "
+              "<score1> <score2> ...\n")
         return
     scores = extract_scores(args[1:])
     if (len(scores) < 1):
-        print("No scores provided. Usage: python3 ft_score_analytics.py <score1> <score2> ...\n")
+        print("No scores provided. Usage: python3 ft_score_analytics.py "
+              "<score1> <score2> ...\n")
         return
     average = sum(scores) / len(scores)
     score_min = min(scores)

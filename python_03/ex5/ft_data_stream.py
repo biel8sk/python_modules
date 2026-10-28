@@ -1,5 +1,5 @@
-import random as rd;
-import typing as tp;
+import random as rd
+
 
 NAMES = ["Alice", "Bob", "Charlie", "Diana", "Ethan",
          "Fiona", "George", "Hannah", "Isaac", "Julia"]
@@ -7,18 +7,18 @@ ACTIONS = ["swimming", "sleeping", "running", "dancing", "reading",
            "cooking", "skating", "singing", "jumping", "writing"]
 
 
-def get_event() -> tp.Generator[tuple]:
+def get_event():
     while True:
         action: str = rd.choice(ACTIONS)
         name: str = rd.choice(NAMES)
         yield (name, action)
 
 
-def consume_event(events) -> tp.Generator[tuple]:
+def consume_event(events):
     while events:
         idx: int = rd.randint(0, (len(events) - 1))
         yield events.pop(idx)
-    
+
 
 def main() -> None:
     stream = get_event()

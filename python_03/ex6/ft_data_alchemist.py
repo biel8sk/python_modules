@@ -3,7 +3,7 @@ import random as rd
 
 def main():
     initial_list = ['Alice', 'bob', 'Charlie', 'dylan', 'Emma', 'Gregory',
-    'john', 'kevin', 'Liam']
+                    'john', 'kevin', 'Liam']
     print(f"Inital list of players: {initial_list}")
     all_captlz = [x.capitalize() for x in initial_list]
     captlz_only = [x for x in initial_list if x.capitalize() == x]

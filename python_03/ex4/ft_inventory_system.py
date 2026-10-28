@@ -27,13 +27,11 @@ def get_min_abundant(itens: dict):
 
 def main() -> None:
     args: list[str] = s.argv[1:]
-    itens = {}
+    itens: dict[str, int] = {}
     total = 0
-    keys = {}
     for arg in args:
         try:
-            if ((not ':' in arg and arg.count(':') != 1) 
-                or arg.strip(':').count(':') != 1):
+            if (arg.count(':') != 1 or arg.strip(':').count(':') != 1):
                 print(f"Error - invalid parameter '{arg}'")
                 continue
             parts = arg.split(':')
