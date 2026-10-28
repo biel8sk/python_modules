@@ -58,6 +58,8 @@ def main() -> None:
           f"with quantity {max_abundant[1]}")
     print(f"Item least abundant: {min_abundant[0]} "
           f"with quantity {min_abundant[1]}")
+    itens.update({"sword": 29})
+    print(f"Updated inventory: {itens}")
 
 
 if __name__ == "__main__":
