@@ -1,4 +1,3 @@
-from typing import TextIO as txIO
 import sys
 
 
@@ -10,7 +9,7 @@ def main():
     file_name = args[0]
     print(f"Accessing file {file_name}")
     try:
-        file: txIO= open(file_name, "r", encoding="utf-8")
+        file = open(file_name, "r", encoding="utf-8")
         print("---\n\n")
         print(file.read())
         file.close()

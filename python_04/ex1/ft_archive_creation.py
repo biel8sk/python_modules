@@ -1,5 +1,5 @@
-from typing import TextIO as txIO
 import sys
+
 
 def main():
     args = sys.argv[1:]
@@ -10,19 +10,20 @@ def main():
     file_data = []
     print(f"Accessing file {file_name}")
     try:
-        file: txIO = open(file_name, 'r', encoding="utf-8")
+        file = open(file_name, 'r', encoding="utf-8")
         print("---\n\n")
-        for l in file.readlines():
-            file_data.append(l.strip())
-            print(l, end='')
+        for line in file.readlines():
+            file_data.append(line.strip())
+            print(line, end='')
         print("\n\n---")
-        print(f"File {file_name} closed.\n")
-        print(f"Transform data:")
-        file_data = [l+'#\n' for l in file_data]
+        print(f"File {file_name} closed.")
+        print("Transform data:")
+        file_data = [line + '#\n' for line in file_data]
         print("---\n\n")
-        print(*file_data)
+        for data in file_data:
+            print(data, end='')
         print("\n\n---")
-        new_file_name: str = input("Enter new file name (or empty): ")
+        new_file_name = input("Enter new file name (or empty): ")
         if (not new_file_name):
             print("Data not saved.")
             return
