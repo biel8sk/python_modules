@@ -10,9 +10,9 @@ def main():
     file_data = []
     print(f"Accessing file {file_name}")
     try:
-        file = open(file_name, 'r', encoding="utf-8")
+        file: txIO = open(file_name, 'r', encoding="utf-8")
         print("---\n\n")
-        for l in tp.IO.readlines(file):
+        for l in file.readlines():
             file_data.append(l.strip())
             print(l, end='')
         print("\n\n---")
@@ -22,18 +22,18 @@ def main():
         print("---\n\n")
         print(*file_data)
         print("\n\n---")
-        new_file: str = input("Enter new file name (or empty): ")
-        if (not new_file):
+        new_file_name: str = input("Enter new file name (or empty): ")
+        if (not new_file_name):
             print("Data not saved.")
             return
-        with open(new_file, 'w', encoding='utf-8') as new:
-            print(f'Savin data to {new_file}')
-            for d in file_data:
-                new.write(d)
+        new_file = open(new_file_name, 'w', encoding='utf-8')
+        print(f'Savin data to {new_file_name}')
+        for line in file_data:
+            new_file.write(line)
         print("Data saved")
     except IOError as ex:
         print(f"{ex.strerror} Error opening file {ex.filename}: {ex}")
 
 
 if __name__ == "__main__":
-    main();
+    main()
