@@ -4,7 +4,7 @@ import sys
 def main():
     args = sys.argv[1:]
     if (len(args) != 1):
-        sys.stderr.write("Usage: ft_archive_creation.py <file>")
+        sys.stderr.write("[STDERR] Usage: ft_archive_creation.py <file>")
         return
     file_name = args[0]
     file_data = []
@@ -33,7 +33,7 @@ def main():
             new_file.write(line)
         print("Data saved")
     except FileNotFoundError as ex:
-        sys.stderr.write(f"Error opening file {ex.filename}: {ex}\n")
+        sys.stderr.write(f"[STDERR] Error opening file {ex.filename}: {ex}\n")
 
 
 if __name__ == "__main__":
