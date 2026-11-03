@@ -1,8 +1,8 @@
 import sys
 
 
-def extract_scores(args):
-    numbers: list[int] = []
+def extract_scores(args) -> list[int]:
+    numbers = []
     for arg in args:
         try:
             numbers.append(int(arg))

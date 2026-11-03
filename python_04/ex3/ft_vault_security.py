@@ -1,11 +1,11 @@
-def secure_archive(file_name: str, mode: str=None, content: str=None):
+def secure_archive(file_name: str, mode=None, content=None):
     try:
         if (mode == 'w'):
             with open(file_name, mode) as file:
                 file.write(content)
                 return (True, 'Content successfully written to file')
         with open(file_name, mode) as file:
-            return(True, file.read())
+            return (True, file.read())
     except Exception as ex:
         return (False, ex.__str__())
 

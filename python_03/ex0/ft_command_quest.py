@@ -10,7 +10,7 @@ def main():
     else:
         print(f"Arguments received: {len(args[1:])}")
         i = 1
-        while(i < len(args)):
+        while (i < len(args)):
             print(f"Argument {i}: {args[i]}")
             i += 1
     print(f"Total arguments: {len(args)}")

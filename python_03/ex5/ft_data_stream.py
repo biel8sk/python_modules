@@ -9,14 +9,14 @@ ACTIONS = ["swimming", "sleeping", "running", "dancing", "reading",
 
 def get_event():
     while True:
-        action: str = rd.choice(ACTIONS)
-        name: str = rd.choice(NAMES)
+        action = rd.choice(ACTIONS)
+        name = rd.choice(NAMES)
         yield (name, action)
 
 
 def consume_event(events):
     while events:
-        idx: int = rd.randint(0, (len(events) - 1))
+        idx = rd.randint(0, (len(events) - 1))
         yield events.pop(idx)
 
 
