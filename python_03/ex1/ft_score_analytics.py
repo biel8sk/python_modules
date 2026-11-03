@@ -1,7 +1,7 @@
 import sys
 
 
-def extract_scores(args) -> list[int]:
+def extract_scores(args):
     numbers = []
     for arg in args:
         try:
