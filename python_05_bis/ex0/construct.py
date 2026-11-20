@@ -23,7 +23,7 @@ def main():
     To seal the laboratory, run:
     python3 -m venv lab_env
     source lab_env/bin/activate # On Unix
-    lab_env\\Scripts\activate # On Windows
+    lab_env/Scripts/activate # On Windows
     
     Then run this program again
     '''
